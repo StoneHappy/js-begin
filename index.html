@@ -17,15 +17,15 @@
     let todos = [
       {
         title: 'Get groceries', 
-        duDate: '2021-10-03'
+        dueDate: '2021-10-03'
       },
       {
         title: 'Wash Car', 
-        duDate: '2021-12-03'
+        dueDate: '2021-12-03'
       },
       {
         title: 'Make dinner', 
-        duDate: '2021-11-03'
+        dueDate: '2021-11-03'
       }
     ];
 
@@ -43,7 +43,7 @@
 
       todos.forEach(function (todo) {
         let element = document.createElement('div');
-        element.innerHTML = todo.title;
+        element.innerHTML = todo.title + ' ' + todo.dueDate;
         let todolist = document.getElementById('todo-list');
         todolist.appendChild(element);
       })
