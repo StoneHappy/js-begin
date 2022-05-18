@@ -10,10 +10,12 @@
 
 <body>
   <input id="todo-title" type="text">
-  <input id="data-picker" type="date" name="" id="">
+  <input id="date-picker" type="date" name="" id="">
   <button onclick="addTodo()">add todo</button>
   <div id="todo-list"></div>
   <script>
+
+    // Models
     let todos = [
       {
         title: 'Get groceries', 
@@ -32,28 +34,21 @@
       }
     ];
 
-    render();
-
-    function addTodo() {
-      let todoTitle = document.getElementById('todo-title');
-      let dataPicker = document.getElementById('data-picker');
-      let todo = {
-        title: todoTitle.value,
-        dueDate: dataPicker.value,
-        id: '' + new Date().getTime()
-      }
-      todos.push(todo);
-      render();
+    // Create Todo
+    function createTodo(title, dueDate) {
+      todos.push(
+        {
+          title: title,
+          dueDate: dueDate,
+          id: '' + new Date().getTime()
+        }
+      )
     }
 
-    function deleteTodo(event) {
-      const deleteButton = event.target;
-      const idToDelete = deleteButton.id;
-
-      todos = todos.filter(function(todo) {
-        console.log(todo.id);
-        console.log(idToDelete);
-        if(todo.id == idToDelete)
+    // Remove Todo
+    function removeTodo(id) {
+      todos = todos.filter(function(todo){
+        if(todo.id == id)
         {
           return false;
         }
@@ -61,12 +56,36 @@
         {
           return true;
         }
-
       })
+    }
+
+
+    // Control
+
+
+    function addTodo() {
+      let todoTitle = document.getElementById('todo-title');
+      let datePicker = document.getElementById('date-picker');
+
+      let title = todoTitle.value;
+      let dueDate = datePicker.value;
       
+      createTodo(title, dueDate);
       render();
     }
 
+
+    function deleteTodo(event) {
+      const deleteButton = event.target;
+      const idToDelete = deleteButton.id;
+
+
+      removeTodo(idToDelete);
+      render();
+    }
+
+
+    // View
     function render() {
 
       document.getElementById('todo-list').innerHTML = '';
@@ -87,6 +106,8 @@
       })
 
     }
+
+    render();
 
   </script>
 </body>
