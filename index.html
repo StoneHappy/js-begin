@@ -10,10 +10,24 @@
 
 <body>
   <input id="todo-title" type="text">
+  <input type="date" name="" id="">
   <button onclick="addTodo()">add todo</button>
   <div id="todo-list"></div>
   <script>
-    let todos = ['Get groceries', 'Wash Car', 'Make dinner'];
+    let todos = [
+      {
+        title: 'Get groceries', 
+        duDate: '2021-10-03'
+      },
+      {
+        title: 'Wash Car', 
+        duDate: '2021-12-03'
+      },
+      {
+        title: 'Make dinner', 
+        duDate: '2021-11-03'
+      }
+    ];
 
     render();
 
@@ -27,9 +41,9 @@
 
       document.getElementById('todo-list').innerHTML = '';
 
-      todos.forEach(function (todoTitle) {
+      todos.forEach(function (todo) {
         let element = document.createElement('div');
-        element.innerHTML = todoTitle;
+        element.innerHTML = todo.title;
         let todolist = document.getElementById('todo-list');
         todolist.appendChild(element);
       })
